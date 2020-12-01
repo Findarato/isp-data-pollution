@@ -347,7 +347,9 @@ please upgrade to at least version {} from http://chromedriver.chromium.org/down
                         if self.debug: print(f'.kill() exception:\n{e}')
             try:
                 @chromedriver_short_timeout_decorator
-                def chromedriver_quit(): self.driver.quit()
+                def chromedriver_quit(): 
+                    self.driver.close()
+                    self.driver.quit()
                 chromedriver_quit()
             except Exception as e:
                 if self.debug: print(f'.quit() exception:\n{e}')
